@@ -1,4 +1,6 @@
 ﻿
+using System.Globalization;
+
 namespace knn
 {
     public class Neighbour
@@ -143,15 +145,15 @@ namespace knn
                     double[] features = new double[4];
                     for (int i = 0; i < 4; i++)
                     {
-                        features[i] = double.Parse(inputData[i]);
+                        features[i] = double.Parse(inputData[i].Replace(',', '.'), CultureInfo.InvariantCulture);
                     }
 
                     string prediction = knn.classify(features);
                     Console.WriteLine($"Expected species is: {prediction.ToUpper()}");
                 }
-                catch
+                catch (FormatException ex)
                 {
-                    Console.WriteLine("Error: incorrect data format. Input should look like: 1.2 4.2 6.2 7.1");
+                    Console.WriteLine($"Error: incorrect data format. {ex.Message} Input should look like: 1.2 4.2 6.2 7.1");
                 }
             }
         }

@@ -1,4 +1,6 @@
-﻿namespace knn;
+﻿using System.Globalization;
+
+namespace knn;
 
 public class IrisObservation
 {
@@ -32,7 +34,7 @@ public class PrepareDataset
             double[] features = new double[4];
             for (int j = 0; j < 4; j++)
             {
-                features[j] = double.Parse(splitted[j]);
+                features[j] = double.Parse(splitted[j], CultureInfo.InvariantCulture);
             }
 
             string label = splitted[4].Trim();
